@@ -12,23 +12,20 @@ import { Item } from '../enteties/Item';
 export class ToyService {
   selectedToy: ToyC;
   toys: ToyC[] = [];
-  toysJson: any = {};
-  allToysForSearch: ToyC[] = [];
   toysC: any = {};
   cartlength: number = 0;
   items: Item[] = [];
-
+ item: Item= new Item();
 
 
   addSelectedToyForDetail(toy: ToyC): void {
     this.selectedToy = toy;
   }
-  item: Item= new Item();
+ 
   
 
   
   addToy(toy: ToyC) {
-    this.toys.push(toy);
     
     if (this.items.length > 0) 
     {
@@ -58,16 +55,7 @@ export class ToyService {
   findAll(): ToyC[] {
     return this.toys;
   }
-  findAllForSeach(): ToyC[] {
-    return this.allToysForSearch;
-  }
-
-
-  getalltoysByID(id: string) {
-    return this.toysC.filter(x => x.categoryNum === id);
-
-  };
-
+ 
 
 
   sumPrice: number = 0;
@@ -92,10 +80,10 @@ export class ToyService {
 
       }
 
-
     });
     return this.sumPrice;
   }
+  
   getToys() {
     return this.firestore.collection('toys').snapshotChanges();
   }
